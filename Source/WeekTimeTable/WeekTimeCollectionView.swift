@@ -9,7 +9,6 @@
 import UIKit
 
 
-
 public class WeekTimeCollectionView: UICollectionView {
     
     private var appearance = WeekTimeAppearance()
@@ -19,10 +18,11 @@ public class WeekTimeCollectionView: UICollectionView {
     private let footerHeight : CGFloat = 30
     private var eventButtons : [EventButton] = []
     private var _addButton : UIButton?
-    
     private let addButtonTag : Int = 10009
+    private var timeWidth : CGFloat = 40
+    public var firstWeekDay : Int = 1
     
-    public var startDate : NSDate = TimeUtil.getWeekStartDate(NSDate())
+    public var startDate : NSDate!
     
     public weak var appearanceDelegate : WeekTimeAppearanceDelegate? {
         didSet {
@@ -34,24 +34,24 @@ public class WeekTimeCollectionView: UICollectionView {
                 appearance.addButtonBgColor ~> appearanceDelegate!.weekTimeAddButtonBgColor?()
                 appearance.addButtonImage ~> appearanceDelegate!.weekTimeAddButtonImage?()
                 appearance.addButtonText ~> appearanceDelegate!.weekTimeAddButtonTitle?()
-                let width = appearance.timeWidth ~> appearanceDelegate!.weekTimeTableTimeWidth?() 
-                cellWidth = (frame.width - width)/7.0
-                cellHeight = cellWidth*4/3
             }
         }
     }
     
     public weak var weekTimeDelegate : WeekTimeTableDelegate?
 
-    public init(frame: CGRect) {
+    public init(frame: CGRect, timeWidth : CGFloat, firstWeekDay: Int = 1) {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .Vertical
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
-        
         super.init(frame: frame, collectionViewLayout: layout)
-        cellWidth = (frame.width - appearance.timeWidth)/7.0
+        self.timeWidth = timeWidth
+        self.firstWeekDay = firstWeekDay
+        startDate = TimeUtil.getWeekStartDate(NSDate(), firstWeekDay: firstWeekDay)
+        cellWidth = CGFloat(Int((frame.width - timeWidth)/7))
         cellHeight = cellWidth*4/3
+        self.timeWidth = frame.width - cellWidth*7
         backgroundColor = UIColor.whiteColor()
         dataSource = self
         delegate = self
@@ -129,7 +129,7 @@ public class WeekTimeCollectionView: UICollectionView {
     }
     
     func drawEvent(event: WeekScheduleEvent, width: CGFloat, index: Int, day: Int) {
-        let x : CGFloat = appearance.timeWidth + cellWidth*CGFloat(day) + CGFloat(index)*width
+        let x : CGFloat = timeWidth + cellWidth*CGFloat(day) + CGFloat(index)*width
         let y : CGFloat = cellHeight/3600.0*CGFloat(event.startSeconds) + 7
         let h : CGFloat = cellHeight/3600.0*CGFloat(event.endSeconds - event.startSeconds)
         let button = EventButton(frame: CGRectMake(x,y,width,h))
@@ -182,7 +182,7 @@ extension WeekTimeCollectionView: UICollectionViewDataSource, UICollectionViewDe
     
     public func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         if indexPath.row % 8 == 0 {
-            return CGSize(width: appearance.timeWidth, height: cellHeight)
+            return CGSize(width: timeWidth, height: cellHeight)
         } else {
             return CGSize(width: cellWidth, height: cellHeight)
         }
@@ -211,7 +211,7 @@ extension WeekTimeCollectionView: UICollectionViewDataSource, UICollectionViewDe
         let view = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionFooter, withReuseIdentifier: WeekTimeFooterView.reuseIdentifier, forIndexPath: indexPath) as! WeekTimeFooterView
         view.lineColor = appearance.lineColor
         view.titleColor = appearance.timeColor
-        view.titleWidth = appearance.timeWidth
+        view.titleWidth = timeWidth
         return view
     }
     
@@ -222,14 +222,14 @@ extension WeekTimeCollectionView {
     func handleTapGesture(gesture: UITapGestureRecognizer) {
         let position = gesture.locationInView(self)
         
-        if position.x <= appearance.timeWidth || position.y <= 8 {
+        if position.x <= timeWidth || position.y <= 8 {
             return
         }
-        let xIndex = Int((position.x - appearance.timeWidth)/cellWidth)
+        let xIndex = Int((position.x - timeWidth)/cellWidth)
         let yIndex = Int((position.y - 8)/cellHeight)
         
         let yOffset = position.y - 8 - CGFloat(yIndex)*cellHeight
-        let x = appearance.timeWidth + CGFloat(xIndex)*cellWidth
+        let x = timeWidth + CGFloat(xIndex)*cellWidth
         var y = CGFloat(yIndex)*cellHeight + 8
         if yOffset > cellHeight/2{
             y += cellHeight/2
@@ -251,7 +251,7 @@ extension WeekTimeCollectionView {
     func addButtonAction(sender: UIButton) {
         _addButton?.removeFromSuperview()
         let rect = sender.frame
-        let col = Int((rect.origin.x - appearance.timeWidth + 1)/cellWidth)
+        let col = Int((rect.origin.x - timeWidth + 1)/cellWidth)
         let row = Int((rect.origin.y - 7)/cellHeight)
         let offset = rect.origin.y - 7 - CGFloat(row)*cellHeight
         
@@ -262,9 +262,5 @@ extension WeekTimeCollectionView {
         
         weekTimeDelegate?.weekTimeTableAddEvent?(start, endTime: end)
         
-    }
-    
-    func weekDayViewUpdated() {
-//        startDate = 
     }
 }

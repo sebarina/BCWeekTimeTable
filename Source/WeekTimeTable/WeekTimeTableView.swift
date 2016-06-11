@@ -14,6 +14,7 @@ public class WeekTimeTableView: UIView {
     public var collectionView : WeekTimeCollectionView?
     public var yearLabel : UILabel?
     public var monthLabel : UILabel?
+    public var calendarAppearance : BCCalendarViewAppearance!
     
     public weak var weekTimeAppearanceDelegate : WeekTimeAppearanceDelegate? {
         didSet {
@@ -61,6 +62,7 @@ public class WeekTimeTableView: UIView {
     
     public init(frame: CGRect, appearance: BCCalendarViewAppearance = BCCalendarViewAppearance()) {
         super.init(frame: frame)
+        self.calendarAppearance = appearance
         calendarView = BCCalendarView(frame: CGRectMake(40, 0, frame.width-40, BCCalendarView.viewHeight), appearance: appearance)
         calendarView?.calendarDelegate = self
         addSubview(calendarView!)
@@ -81,7 +83,7 @@ public class WeekTimeTableView: UIView {
         monthLabel?.text = String(compoent.month) + "月"
         addSubview(monthLabel!)
         
-        collectionView = WeekTimeCollectionView(frame: CGRectMake(0, BCCalendarView.viewHeight, frame.width, frame.height - BCCalendarView.viewHeight))
+        collectionView = WeekTimeCollectionView(frame: CGRectMake(0, BCCalendarView.viewHeight, frame.width, frame.height - BCCalendarView.viewHeight), timeWidth: 40, firstWeekDay: appearance.firstDay.rawValue)
         
         
         
@@ -98,6 +100,7 @@ public class WeekTimeTableView: UIView {
         super.layoutSubviews()
         calendarView?.commonInit()
         collectionView?.scrollToCurrentTime()
+        weekTimeDelegate?.weekTimeWeekTimeUpdated?(startTime)
     }
     
     
@@ -106,7 +109,7 @@ public class WeekTimeTableView: UIView {
 
 extension WeekTimeTableView : BCCalendarViewDelegate {
     public func didSelectDayView(dayView: DayView, animationDidFinish: Bool) {
-        let start = TimeUtil.getWeekStartDate(dayView.date.convertedDate() ?? NSDate())
+        let start = TimeUtil.getWeekStartDate(dayView.date.convertedDate() ?? NSDate(), firstWeekDay: calendarAppearance.firstDay.rawValue)
         if collectionView!.startDate != start {
             collectionView?.startDate = start
             weekTimeDelegate?.weekTimeWeekTimeUpdated?(start)

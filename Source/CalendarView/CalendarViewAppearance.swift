@@ -21,7 +21,7 @@ public class BCCalendarViewAppearance : NSObject {
     public var currentDayTextSize : CGFloat = 14
     public var weekDayTextSize : CGFloat = 14
     public var dayOfWeekTextColor : UIColor = UIColor.grayColor()
-    public var firstDay : Weekday = .Monday
+    public var firstDay : Weekday = .Sunday
     public var weekdaySymbolType : WeekdaySymbolType = .Short
     public var dayOfWeekTextUppercase : Bool = true
 }

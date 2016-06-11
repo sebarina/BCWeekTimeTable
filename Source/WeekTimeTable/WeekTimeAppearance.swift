@@ -14,7 +14,6 @@ public struct WeekTimeAppearance {
     public var dashLineColor : UIColor = UIColor.colorFromCode(0x9A9A9A).colorWithAlphaComponent(0.8)
     public var eventTitleColor : UIColor = UIColor.colorFromCode(0x2E3D50)
     public var timeColor : UIColor = UIColor.colorFromCode(0x2E3D50)
-    public var timeWidth : CGFloat = 40
     public var addButtonBgColor : UIColor = UIColor.colorFromCode(0x66ccff)
     public var addButtonText : String = ""
     public var addButtonImage : UIImage = UIImage()

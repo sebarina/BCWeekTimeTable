@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CVCalendar
 
 public class BCDateComponent {
     public var year : Int
@@ -62,9 +63,9 @@ class TimeUtil {
         return dateFormatter.stringFromDate(date)
     }
     
-    static func getWeekStartDate(date: NSDate) -> NSDate {
+    static func getWeekStartDate(date: NSDate, firstWeekDay: Int) -> NSDate {
         let calendar = NSCalendar.currentCalendar()
-        calendar.firstWeekday = 2
+        calendar.firstWeekday = firstWeekDay
         calendar.timeZone = NSTimeZone.localTimeZone()
         let currentDateComponents = calendar.components([.YearForWeekOfYear, .WeekOfYear ], fromDate: date)
         return calendar.dateFromComponents(currentDateComponents) ?? date
