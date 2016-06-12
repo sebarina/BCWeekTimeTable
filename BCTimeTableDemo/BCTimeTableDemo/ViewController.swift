@@ -38,7 +38,7 @@ extension ViewController : WeekTimeTableDelegate {
     }
     
     func weekTimeTableDidSelectEvent(event: AnyObject?) {
-        
+        weekTableView?.goToDate(NSDate().dateByAddingTimeInterval(-3600*72))
     }
     
     func weekTimeWeekTimeUpdated(starTime: NSDate) {

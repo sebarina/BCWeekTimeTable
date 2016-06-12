@@ -113,7 +113,11 @@ public class WeekTimeTableView: UIView {
         weekTimeDelegate?.weekTimeWeekTimeUpdated?(startTime)
     }
     
-    
+    public func goToDate(date: NSDate) {
+        calendarView?.calendarView?.toggleViewWithDate(date)
+//        collectionView?.startDate = TimeUtil.getWeekStartDate(date, firstWeekDay: calendarAppearance.firstDay.rawValue)
+        
+    }
 }
 
 
