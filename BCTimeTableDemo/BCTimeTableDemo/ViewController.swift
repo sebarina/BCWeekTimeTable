@@ -29,7 +29,7 @@ class ViewController: UIViewController {
 }
 
 extension ViewController : WeekTimeTableDelegate {
-    func weekTimeTableAddEvent(starTime: NSDate, endTime: NSDate) {
+    func weekTimeTableAddEvent(starTime: NSDate, endTime: NSDate, addButton: UIButton) {
         let format = NSDateFormatter()
         format.dateFormat = "yyyy-MM-dd HH:mm"
         format.timeZone = NSTimeZone.localTimeZone()

@@ -260,7 +260,7 @@ extension WeekTimeCollectionView {
         let end = start.dateByAddingTimeInterval(Double(1800))
         
         
-        weekTimeDelegate?.weekTimeTableAddEvent?(start, endTime: end)
+        weekTimeDelegate?.weekTimeTableAddEvent?(start, endTime: end, addButton: sender)
         
     }
 }
