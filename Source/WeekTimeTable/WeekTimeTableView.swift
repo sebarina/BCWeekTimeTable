@@ -36,10 +36,10 @@ public class WeekTimeTableView: UIView {
         return collectionView?.startDate ?? NSDate()
     }
     
-    public var events : [WeekScheduleEvent]? {
+    public var events : [WeekScheduleEvent<NSObject>]? {
         didSet {
             if events != nil {
-                var tempEvents : [[WeekScheduleEvent]] = [
+                var tempEvents : [[WeekScheduleEvent<NSObject>]] = [
                     [],
                     [],
                     [],
@@ -49,7 +49,7 @@ public class WeekTimeTableView: UIView {
                     []
                 ]
                 for event in events! {
-                    let weekDay = (TimeUtil.getDateComponent(event.startDate).weekDay + 5) % 7
+                    let weekDay = (TimeUtil.getDateComponent(event.startDate).weekDay + 7 - calendarAppearance.firstDay.rawValue) % 7
                     tempEvents[weekDay].append(event)
                     
                 }

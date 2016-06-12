@@ -74,7 +74,7 @@ public class WeekTimeCollectionView: UICollectionView {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 //    public var startTime : NSDate 
-    public var events : [[WeekScheduleEvent]]? {
+    public var events : [[WeekScheduleEvent<NSObject>]]? {
         didSet {
             if events != nil {
                 // 获取每天的group events
@@ -84,8 +84,8 @@ public class WeekTimeCollectionView: UICollectionView {
                 eventButtons.removeAll()
                 for day in 0 ..< events!.count {
                     let data = events![day]
-                    var groups: [[WeekScheduleEvent]] = []
-                    var group = [WeekScheduleEvent]()
+                    var groups: [[WeekScheduleEvent<NSObject>]] = []
+                    var group = [WeekScheduleEvent<NSObject>]()
                     var startTime : Double = 0
                     var endTime : Double = 0
                     for i in 0 ..< data.count {
@@ -128,7 +128,7 @@ public class WeekTimeCollectionView: UICollectionView {
         }
     }
     
-    func drawEvent(event: WeekScheduleEvent, width: CGFloat, index: Int, day: Int) {
+    func drawEvent(event: WeekScheduleEvent<NSObject>, width: CGFloat, index: Int, day: Int) {
         let x : CGFloat = timeWidth + cellWidth*CGFloat(day) + CGFloat(index)*width
         let y : CGFloat = cellHeight/3600.0*CGFloat(event.startSeconds) + 7
         let h : CGFloat = cellHeight/3600.0*CGFloat(event.endSeconds - event.startSeconds)
