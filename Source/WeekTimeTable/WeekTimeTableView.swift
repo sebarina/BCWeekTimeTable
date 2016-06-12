@@ -53,6 +53,16 @@ public class WeekTimeTableView: UIView {
                     tempEvents[weekDay].append(event)
                     
                 }
+                
+                for i in 0 ..< tempEvents.count {
+                    let tempEvent = tempEvents[i]
+                    tempEvents[i] = tempEvent.sort({ (event1, event2) -> Bool in
+                        if event1.startSeconds < event2.startSeconds {
+                            return true
+                        }
+                        return false
+                    })
+                }
                 collectionView?.events = tempEvents
             }
             

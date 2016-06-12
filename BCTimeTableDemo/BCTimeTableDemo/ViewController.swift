@@ -50,11 +50,11 @@ extension ViewController : WeekTimeTableDelegate {
         let event1 = WeekScheduleEvent<NSObject>(startDate: NSDate(), endDate: NSDate().dateByAddingTimeInterval(3600), eventColor: UIColor.blueColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件", customValue: Reservation())
         
         
-        let event2 = WeekScheduleEvent<NSObject>(startDate: NSDate().dateByAddingTimeInterval(3600*18), endDate: NSDate().dateByAddingTimeInterval(3600*19), eventColor: UIColor.greenColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件1", customValue: Reservation())
+        let event2 = WeekScheduleEvent<NSObject>(startDate: NSDate().dateByAddingTimeInterval(-7200), endDate: NSDate().dateByAddingTimeInterval(-3600), eventColor: UIColor.greenColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件1", customValue: Reservation())
         
-        let event3 = WeekScheduleEvent<NSObject>(startDate: NSDate().dateByAddingTimeInterval(-3600*24), endDate: NSDate().dateByAddingTimeInterval(-3600*23), eventColor: UIColor.orangeColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件2", customValue: Reservation())
+        let event3 = WeekScheduleEvent<NSObject>(startDate: NSDate().dateByAddingTimeInterval(-1800), endDate: NSDate().dateByAddingTimeInterval(1800), eventColor: UIColor.orangeColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件2", customValue: Reservation())
         
-        let event4 = WeekScheduleEvent<NSObject>(startDate: NSDate().dateByAddingTimeInterval(-3600*0.5), endDate: NSDate().dateByAddingTimeInterval(3600*0.5), eventColor: UIColor.redColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件3", customValue: Reservation())
+        let event4 = WeekScheduleEvent<NSObject>(startDate: NSDate().dateByAddingTimeInterval(-3600*2.5), endDate: NSDate().dateByAddingTimeInterval(-3600*1.5), eventColor: UIColor.redColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件3", customValue: Reservation())
         
         weekTableView?.events = [event1, event2, event3, event4]
     }

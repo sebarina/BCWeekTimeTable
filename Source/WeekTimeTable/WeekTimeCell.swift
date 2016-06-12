@@ -35,6 +35,7 @@ public class WeekTimeCell: UICollectionViewCell {
         CGContextAddLineToPoint(context, frame.width, frame.height/2 + 7)
         CGContextStrokePath(context)
         
+        CGContextMoveToPoint(context, 0, 0)
         CGContextClosePath(context)
         
     }
