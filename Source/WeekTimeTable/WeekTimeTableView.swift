@@ -15,6 +15,7 @@ public class WeekTimeTableView: UIView {
     public var yearLabel : UILabel?
     public var monthLabel : UILabel?
     public var calendarAppearance : BCCalendarViewAppearance!
+    public var selectedDate : NSDate = NSDate()
     
     public weak var weekTimeAppearanceDelegate : WeekTimeAppearanceDelegate? {
         didSet {
@@ -123,6 +124,7 @@ public class WeekTimeTableView: UIView {
 
 extension WeekTimeTableView : BCCalendarViewDelegate {
     public func didSelectDayView(dayView: DayView, animationDidFinish: Bool) {
+        selectedDate = dayView.date.convertedDate() ?? NSDate()
         let start = TimeUtil.getWeekStartDate(dayView.date.convertedDate() ?? NSDate(), firstWeekDay: calendarAppearance.firstDay.rawValue)
         if collectionView!.startDate != start {
             collectionView?.startDate = start
