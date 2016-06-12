@@ -9,8 +9,8 @@
 import UIKit
 import CVCalendar
 
-public class CalendarView: UIView {
-    public var appearance = CalendarViewAppearance()
+public class BCCalendarView: UIView {
+    public var appearance = BCCalendarViewAppearance()
     public var menuView : CVCalendarMenuView?
     public var calendarView : CVCalendarView?
     public var animationFinished : Bool = true
@@ -18,7 +18,7 @@ public class CalendarView: UIView {
     private let calendarRowHeight : CGFloat = 36
     public static var viewHeight : CGFloat = 65
 
-    public weak var calendarDelegate : CalendarViewDelegate?
+    public weak var calendarDelegate : BCCalendarViewDelegate?
     
     
     public var startTime : NSDate {
@@ -29,7 +29,7 @@ public class CalendarView: UIView {
         return (calendarView?.contentController as? WeekContentViewController)?.getPresentedWeek()?.dayViews.last?.date.convertedDate() ?? NSDate()
     }
     
-    public init(frame: CGRect, appearance: CalendarViewAppearance = CalendarViewAppearance()) {
+    public init(frame: CGRect, appearance: BCCalendarViewAppearance = BCCalendarViewAppearance()) {
         super.init(frame: frame)
         self.appearance = appearance
         menuView = CVCalendarMenuView(frame: CGRectMake(0, 0, frame.width, menuHeight))
@@ -71,7 +71,7 @@ public class CalendarView: UIView {
 
 }
 
-extension CalendarView : CVCalendarViewAppearanceDelegate {
+extension BCCalendarView : CVCalendarViewAppearanceDelegate {
     public func dayLabelPresentWeekdayInitallyBold() -> Bool {
         return false
     }
@@ -122,7 +122,7 @@ extension CalendarView : CVCalendarViewAppearanceDelegate {
     
 }
 
-extension CalendarView : CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
+extension BCCalendarView : CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
     public func firstWeekday() -> Weekday {
         return appearance.firstDay
     }

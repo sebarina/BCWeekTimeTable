@@ -58,8 +58,8 @@ extension ViewController : WeekTimeTableDelegate {
 }
 
 extension ViewController {
-    func calendarAppearance() -> CalendarViewAppearance {
-        let appearance = CalendarViewAppearance()
+    func calendarAppearance() -> BCCalendarViewAppearance {
+        let appearance = BCCalendarViewAppearance()
         appearance.currentDayTextColor = UIColor.brownColor()
         appearance.currentDaySelectedBgColor = UIColor.greenColor()
         appearance.currentDayBgColor = UIColor.whiteColor()

@@ -8,7 +8,7 @@
 
 import UIKit
 import CVCalendar
-public class CalendarViewAppearance : NSObject {
+public class BCCalendarViewAppearance : NSObject {
     public var spaceBetweenDays : CGFloat = 2
     public var currentDaySelectedBgColor : UIColor = UIColor.colorFromCode(0x66ccff)
     public var currentDaySelectedTextColor : UIColor = UIColor.whiteColor()
@@ -26,8 +26,8 @@ public class CalendarViewAppearance : NSObject {
     public var dayOfWeekTextUppercase : Bool = true
 }
 
-@objc public protocol CalendarViewDelegate {
-    optional func didSelectDayView(dayView: DayView, animationDidFinish: Bool)
+@objc public protocol BCCalendarViewDelegate {
+    optional func didSelectDayView(date: DayView, animationDidFinish: Bool)
     optional func currentDateUpdated(date: CVDate)
     optional func didShowNextMonthView(date: NSDate)
     optional func didShowPreviousMonthView(date: NSDate)
