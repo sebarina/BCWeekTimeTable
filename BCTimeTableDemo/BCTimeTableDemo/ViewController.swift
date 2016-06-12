@@ -17,7 +17,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         let ap = calendarAppearance()
         ap.firstDay = .Sunday
-        weekTableView = WeekTimeTableView(frame: CGRectMake(0, 64, view.frame.width, view.frame.height - 64), appearance: ap)
+        weekTableView = WeekTimeTableView(frame: CGRectMake(0, 20, view.frame.width, view.frame.height-20), appearance: ap)
         weekTableView?.weekTimeAppearanceDelegate = self
         weekTableView?.weekTimeDelegate = self
         view.addSubview(weekTableView!)
