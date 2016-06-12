@@ -139,7 +139,7 @@ public class WeekTimeCollectionView: UICollectionView {
         button.titleLabel?.font = UIFont.systemFontOfSize(10)
         button.setTitleColor(UIColor.blackColor(), forState: .Normal)
         button.customEvent = event.customValue
-        button.addTarget(self, action: #selector(WeekTimeCollectionView.addButtonAction(_:)), forControlEvents: .TouchUpInside)
+        button.addTarget(self, action: #selector(WeekTimeCollectionView.eventClicked(_:)), forControlEvents: .TouchUpInside)
         eventButtons.append(button)
         addSubview(button)
     }
