@@ -22,5 +22,6 @@ UI配置：  weekTimeAppearanceDelegate : WeekTimeAppearanceDelegate?
 </pre>
 
 ## 效果图
-![weektimetable1](http://utility.uteacher.me/weektimetable1.png)![weektimetable2](http://utility.uteacher.me/weektimetable2.png)
+![weektimetable1](http://utility.uteacher.me/weektimetable1.png)
+![weektimetable2](http://utility.uteacher.me/weektimetable2.png)
 
