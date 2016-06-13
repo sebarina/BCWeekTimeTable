@@ -9,7 +9,7 @@
 
 - 事件的响应：  weekTimeDelegate : WeekTimeTableDelegate?
 
-三、 WeekTimeTableView
+## 三、 WeekTimeTableView
 
 UI配置：  weekTimeAppearanceDelegate : WeekTimeAppearanceDelegate?
 <pre>init(frame: CGRect, appearance: CalendarViewAppearance = CalendarViewAppearance())</pre>
@@ -20,3 +20,7 @@ UI配置：  weekTimeAppearanceDelegate : WeekTimeAppearanceDelegate?
     optional func weekTimeTableDidSelectEvent(event: AnyObject?) -> Void
     optional func weekTimeWeekTimeUpdated(starTime: NSDate) -> Void
 </pre>
+
+## 效果图
+![weektimetable1](http://utility.uteacher.me/weektimetable1.png)![weektimetable2](http://utility.uteacher.me/weektimetable2.png)
+
