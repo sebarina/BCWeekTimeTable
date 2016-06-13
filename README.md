@@ -22,6 +22,8 @@ UI配置：  weekTimeAppearanceDelegate : WeekTimeAppearanceDelegate?
 </pre>
 
 ## 效果图
-![weektimetable1](http://utility.uteacher.me/weektimetable1.png =375x667)
-![weektimetable2](http://utility.uteacher.me/weektimetable2.png =375x667)
+<img src="http://utility.uteacher.me/weektimetable1.png" width="300">
+
+### 添加事件
+<img src="http://utility.uteacher.me/weektimetable2.png" width="300">
 
