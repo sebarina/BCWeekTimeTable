@@ -2,7 +2,7 @@
 
 ## 一、 CalendarView
 - UI的配置： CalendarView的成员变量 appearance设置（CalendarViewAppearance）
-- 事件的响应：选中dayView， 当前时间更新等事件，通过delegate回调 calendarDelegate : CalendarViewDelegate?
+- 事件的响应：选中dayView， 当前时间更新等事件，通过delegate回调<pre>calendarDelegate : CalendarViewDelegate?</pre>
 
 ## 二、 WeekTimeCollectionView
 - UI的配置：  appearanceDelegate : WeekTimeAppearanceDelegate
