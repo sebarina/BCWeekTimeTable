@@ -18,6 +18,8 @@ import UIKit
     optional func weekTimeAddButtonBgColor() -> UIColor
     optional func weekTimeAddButtonImage() -> UIImage
     optional func weekTimeAddButtonTitle() -> String
+    optional func weekTimeTableStartHour() -> Int
+    optional func weekTimeTableEndHour() -> Int
     
     
 }

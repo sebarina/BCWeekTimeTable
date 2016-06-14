@@ -56,7 +56,13 @@ extension ViewController : WeekTimeTableDelegate {
         
         let event4 = WeekScheduleEvent<NSObject>(startDate: NSDate().dateByAddingTimeInterval(-3600*2.5), endDate: NSDate().dateByAddingTimeInterval(-3600*1.5), eventColor: UIColor.redColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件3", customValue: Reservation())
         
-        weekTableView?.events = [event1, event2, event3, event4]
+        let event5 = WeekScheduleEvent<NSObject>(startDate: format.dateFromString("2016-6-15 08:00")!, endDate: format.dateFromString("2015-6-15 09:00")!, eventColor: UIColor.blueColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件5", customValue: nil)
+        let event6 = WeekScheduleEvent<NSObject>(startDate: format.dateFromString("2016-6-13 21:00")!, endDate: format.dateFromString("2015-6-13 22:00")!, eventColor: UIColor.blueColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件6", customValue: nil)
+        
+        let event7 = WeekScheduleEvent<NSObject>(startDate: format.dateFromString("2016-6-15 07:00")!, endDate: format.dateFromString("2015-6-15 09:00")!, eventColor: UIColor.blueColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件7", customValue: nil)
+        let event8 = WeekScheduleEvent<NSObject>(startDate: format.dateFromString("2016-6-13 21:00")!, endDate: format.dateFromString("2015-6-13 23:00")!, eventColor: UIColor.blueColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件8", customValue: nil)
+        
+        weekTableView?.events = [event1, event2, event3, event4, event5, event6, event7, event8]
     }
 }
 
@@ -83,7 +89,14 @@ extension ViewController : WeekTimeAppearanceDelegate {
     func weekTimeTableDashlineColor() -> UIColor {
         return UIColor.purpleColor()
     }
-
+    
+    func weekTimeTableStartHour() -> Int {
+        return 8
+    }
+    
+    func weekTimeTableEndHour() -> Int {
+        return 22
+    }
 }
 
 

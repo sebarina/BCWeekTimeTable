@@ -47,6 +47,15 @@ public class WeekTimeFooterView: UICollectionReusableView, ReusableView {
         }
     }
     
+    public var hour : String {
+        get {
+            return textLabel?.text ?? ""
+        }
+        set {
+            textLabel?.text = newValue
+        }
+    }
+    
     override public init(frame: CGRect) {
         super.init(frame: frame)
         textLabel = UILabel(frame: CGRectMake(0, 0, 35, 16))

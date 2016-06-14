@@ -17,6 +17,8 @@ public struct WeekTimeAppearance {
     public var addButtonBgColor : UIColor = UIColor.colorFromCode(0x66ccff)
     public var addButtonText : String = ""
     public var addButtonImage : UIImage = UIImage()
+    public var startHour : Int = 0
+    public var endHour : Int = 24
     
     init() {
         

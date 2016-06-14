@@ -34,6 +34,8 @@ public class WeekTimeCollectionView: UICollectionView {
                 appearance.addButtonBgColor ~> appearanceDelegate!.weekTimeAddButtonBgColor?()
                 appearance.addButtonImage ~> appearanceDelegate!.weekTimeAddButtonImage?()
                 appearance.addButtonText ~> appearanceDelegate!.weekTimeAddButtonTitle?()
+                appearance.startHour ~> appearanceDelegate!.weekTimeTableStartHour?()
+                appearance.endHour ~> appearanceDelegate!.weekTimeTableEndHour?()
             }
         }
     }
@@ -89,7 +91,9 @@ public class WeekTimeCollectionView: UICollectionView {
                     var startTime : Double = 0
                     var endTime : Double = 0
                     for i in 0 ..< data.count {
-                        
+                        if data[i].startSeconds < Double(appearance.startHour * 3600) || data[i].endSeconds > Double(appearance.endHour*3600) {
+                            continue
+                        }
                         if i == 0 {
                            
                             startTime = data[0].startSeconds
@@ -130,7 +134,7 @@ public class WeekTimeCollectionView: UICollectionView {
     
     func drawEvent(event: WeekScheduleEvent<NSObject>, width: CGFloat, index: Int, day: Int) {
         let x : CGFloat = timeWidth + cellWidth*CGFloat(day) + CGFloat(index)*width
-        let y : CGFloat = cellHeight/3600.0*CGFloat(event.startSeconds) + 7
+        let y : CGFloat = cellHeight/3600.0*CGFloat(event.startSeconds - Double(appearance.startHour*3600)) + 7
         let h : CGFloat = cellHeight/3600.0*CGFloat(event.endSeconds - event.startSeconds)
         let button = EventButton(frame: CGRectMake(x,y,width,h))
         button.backgroundColor = event.eventColor
@@ -173,7 +177,7 @@ public class WeekTimeCollectionView: UICollectionView {
 
 extension WeekTimeCollectionView: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8*24
+        return 8*(appearance.endHour - appearance.startHour)
     }
     
     public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -192,7 +196,7 @@ extension WeekTimeCollectionView: UICollectionViewDataSource, UICollectionViewDe
         if indexPath.row % 8 == 0 {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(TimeTitleCell.reuseIdentifier, forIndexPath: indexPath) as! TimeTitleCell
             cell.titleColor = appearance.timeColor
-            cell.time = String(indexPath.row/8)
+            cell.time = String(indexPath.row/8 + appearance.startHour)
             return cell
         } else {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(WeekTimeCell.reuseIdentifier, forIndexPath: indexPath) as! WeekTimeCell
@@ -212,6 +216,7 @@ extension WeekTimeCollectionView: UICollectionViewDataSource, UICollectionViewDe
         view.lineColor = appearance.lineColor
         view.titleColor = appearance.timeColor
         view.titleWidth = timeWidth
+        view.hour = String(appearance.endHour)
         return view
     }
     
