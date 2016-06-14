@@ -260,7 +260,7 @@ extension WeekTimeCollectionView {
         let row = Int((rect.origin.y - 7)/cellHeight)
         let offset = rect.origin.y - 7 - CGFloat(row)*cellHeight
         
-        let start = startDate.dateByAddingTimeInterval(Double(col*24*3600 + row*3600 + (offset >= cellHeight/2 ? 1800 : 0)))
+        let start = startDate.dateByAddingTimeInterval(Double(col*24*3600 + row*3600 + (offset >= cellHeight/2 ? 1800 : 0) + appearance.startHour*3600))
         
         let end = start.dateByAddingTimeInterval(Double(1800))
         

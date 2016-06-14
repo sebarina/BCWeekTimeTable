@@ -11,7 +11,7 @@ import BCWeekTimeTable
 
 class ViewController: UIViewController {
     var weekTableView : WeekTimeTableView?
-
+    private let queue = dispatch_queue_create("com.aschuch.cache.diskQueue", DISPATCH_QUEUE_CONCURRENT)
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -38,7 +38,12 @@ extension ViewController : WeekTimeTableDelegate {
     }
     
     func weekTimeTableDidSelectEvent(event: AnyObject?) {
-        weekTableView?.goToDate(NSDate().dateByAddingTimeInterval(-3600*72))
+        var test = "just for testing"
+        dispatch_sync(queue) { 
+            sleep(5)
+            test = "just after update"
+        }
+        print(test)
     }
     
     func weekTimeWeekTimeUpdated(starTime: NSDate) {
