@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D462B7DF1D1117ED0011BEEF /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D462B7DE1D1117ED0011BEEF /* ViewController2.swift */; };
+		D462B7E11D1117F90011BEEF /* ViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D462B7E01D1117F90011BEEF /* ViewController1.swift */; };
 		D4B289911D0AAB8E00F4BA46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B289901D0AAB8E00F4BA46 /* AppDelegate.swift */; };
 		D4B289931D0AAB8E00F4BA46 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B289921D0AAB8E00F4BA46 /* ViewController.swift */; };
 		D4B289961D0AAB8E00F4BA46 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B289941D0AAB8E00F4BA46 /* Main.storyboard */; };
@@ -15,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D462B7DE1D1117ED0011BEEF /* ViewController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
+		D462B7E01D1117F90011BEEF /* ViewController1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController1.swift; sourceTree = "<group>"; };
 		D4B2898D1D0AAB8E00F4BA46 /* BCTimeTableDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BCTimeTableDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B289901D0AAB8E00F4BA46 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4B289921D0AAB8E00F4BA46 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +64,8 @@
 				D4B289971D0AAB8E00F4BA46 /* Assets.xcassets */,
 				D4B289991D0AAB8E00F4BA46 /* LaunchScreen.storyboard */,
 				D4B2899C1D0AAB8F00F4BA46 /* Info.plist */,
+				D462B7DE1D1117ED0011BEEF /* ViewController2.swift */,
+				D462B7E01D1117F90011BEEF /* ViewController1.swift */,
 			);
 			path = BCTimeTableDemo;
 			sourceTree = "<group>";
@@ -135,8 +141,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D462B7E11D1117F90011BEEF /* ViewController1.swift in Sources */,
 				D4B289931D0AAB8E00F4BA46 /* ViewController.swift in Sources */,
 				D4B289911D0AAB8E00F4BA46 /* AppDelegate.swift in Sources */,
+				D462B7DF1D1117ED0011BEEF /* ViewController2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +294,7 @@
 				D4B289A11D0AAB8F00F4BA46 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

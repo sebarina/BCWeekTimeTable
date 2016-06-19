@@ -1,11 +1,71 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1Cc-p8-wY4">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Navigation Controller-->
+        <scene sceneID="mEO-F9-v61">
+            <objects>
+                <navigationController id="1Cc-p8-wY4" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7W9-z0-kVF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="1D7-zS-EkT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D4E-bh-lDm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-489" y="76"/>
+        </scene>
+        <!--Test-->
+        <scene sceneID="7xu-wi-u1N">
+            <objects>
+                <viewController id="i7S-OM-Q7K" customClass="ViewController1" customModule="BCTimeTableDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3jm-Gv-KWP"/>
+                        <viewControllerLayoutGuide type="bottom" id="E0h-4L-oHt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gsI-9d-H3Q">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Test" id="LK5-iu-4kM">
+                        <barButtonItem key="rightBarButtonItem" title="test" id="8nv-kD-9p0">
+                            <connections>
+                                <segue destination="jzk-fx-4vV" kind="push" id="BXG-rT-NRH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lsp-od-fjf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1063" y="151"/>
+        </scene>
+        <!--Test2-->
+        <scene sceneID="MxB-oT-d8g">
+            <objects>
+                <viewController id="jzk-fx-4vV" customClass="ViewController2" customModule="BCTimeTableDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZJ6-4m-vVc"/>
+                        <viewControllerLayoutGuide type="bottom" id="JIe-sO-PbV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6Gu-cy-LAX">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Test2" id="Ecp-PM-FuU"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="swE-hT-0oK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1771" y="142"/>
+        </scene>
+        <!--Title-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="BCTimeTableDemo" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,6 +78,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="LnQ-ZO-ZYT">
+                        <barButtonItem key="backBarButtonItem" title="22" id="NUw-MR-NVq"/>
+                        <barButtonItem key="rightBarButtonItem" title="Go" id="wnW-Re-HiX">
+                            <connections>
+                                <segue destination="i7S-OM-Q7K" kind="push" id="ekw-Qv-7xW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

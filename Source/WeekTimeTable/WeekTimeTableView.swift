@@ -37,10 +37,10 @@ public class WeekTimeTableView: UIView {
         return collectionView?.startDate ?? NSDate()
     }
     
-    public var events : [WeekScheduleEvent<NSObject>]? {
+    public var events : [WeekScheduleEvent]? {
         didSet {
             if events != nil {
-                var tempEvents : [[WeekScheduleEvent<NSObject>]] = [
+                var tempEvents : [[WeekScheduleEvent]] = [
                     [],
                     [],
                     [],

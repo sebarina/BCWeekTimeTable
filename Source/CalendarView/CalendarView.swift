@@ -13,7 +13,6 @@ public class BCCalendarView: UIView {
     public var appearance = BCCalendarViewAppearance()
     public var menuView : CVCalendarMenuView?
     public var calendarView : CVCalendarView?
-    public var animationFinished : Bool = true
     private let menuHeight : CGFloat = 24
     private let calendarRowHeight : CGFloat = 36
     public static var viewHeight : CGFloat = 65
@@ -29,11 +28,13 @@ public class BCCalendarView: UIView {
         return (calendarView?.contentController as? WeekContentViewController)?.getPresentedWeek()?.dayViews.last?.date.convertedDate() ?? NSDate()
     }
     
+    
     public init(frame: CGRect, appearance: BCCalendarViewAppearance = BCCalendarViewAppearance()) {
         super.init(frame: frame)
         self.appearance = appearance
         menuView = CVCalendarMenuView(frame: CGRectMake(0, 0, frame.width, menuHeight))
         addSubview(menuView!)
+        
     
         calendarView = CVCalendarView(frame: CGRectMake(0, menuHeight, frame.width, calendarRowHeight))
         addSubview(calendarView!)
@@ -47,6 +48,7 @@ public class BCCalendarView: UIView {
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+
     
     public func commonInit() {
         calendarView?.commitCalendarViewUpdate()
@@ -60,13 +62,8 @@ public class BCCalendarView: UIView {
     
     public func changeMode(mode: CalendarMode) {
         calendarView?.changeMode(mode)
-        if mode == .WeekView {
-            calendarView?.frame.size.height = (calendarView?.contentController.bounds.height) ?? calendarRowHeight
-            self.frame.size.height = ((calendarView?.contentController.bounds.height) ?? calendarRowHeight) + menuHeight + 10
-        } else {
-            calendarView?.frame.size.height = (calendarView?.contentController.bounds.height) ?? calendarRowHeight*5
-            self.frame.size.height = ((calendarView?.contentController.bounds.height) ?? calendarRowHeight*5) + menuHeight + 10
-        }
+        calendarView?.frame.size.height = calendarView!.contentController.bounds.height
+        frame.size.height = calendarView!.contentController.bounds.height + menuHeight
     }
 
 }

@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 public class WeekTimeCollectionView: UICollectionView {
     
     private var appearance = WeekTimeAppearance()
@@ -75,8 +74,11 @@ public class WeekTimeCollectionView: UICollectionView {
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
+
 //    public var startTime : NSDate 
-    public var events : [[WeekScheduleEvent<NSObject>]]? {
+    
+
+    public var events : [[WeekScheduleEvent]]? {
         didSet {
             if events != nil {
                 // 获取每天的group events
@@ -86,8 +88,8 @@ public class WeekTimeCollectionView: UICollectionView {
                 eventButtons.removeAll()
                 for day in 0 ..< events!.count {
                     let data = events![day]
-                    var groups: [[WeekScheduleEvent<NSObject>]] = []
-                    var group = [WeekScheduleEvent<NSObject>]()
+                    var groups: [[WeekScheduleEvent]] = []
+                    var group = [WeekScheduleEvent]()
                     var startTime : Double = 0
                     var endTime : Double = 0
                     for i in 0 ..< data.count {
@@ -132,7 +134,7 @@ public class WeekTimeCollectionView: UICollectionView {
         }
     }
     
-    func drawEvent(event: WeekScheduleEvent<NSObject>, width: CGFloat, index: Int, day: Int) {
+    func drawEvent(event: WeekScheduleEvent, width: CGFloat, index: Int, day: Int) {
         let x : CGFloat = timeWidth + cellWidth*CGFloat(day) + CGFloat(index)*width
         let y : CGFloat = cellHeight/3600.0*CGFloat(event.startSeconds - Double(appearance.startHour*3600)) + 7
         let h : CGFloat = cellHeight/3600.0*CGFloat(event.endSeconds - event.startSeconds)
@@ -164,7 +166,7 @@ public class WeekTimeCollectionView: UICollectionView {
     
     public func scrollToCurrentTime() {
 
-        let hour = TimeUtil.getDateComponent(NSDate()).hour
+        let hour = TimeUtil.getDateComponent(NSDate()).hour - appearance.startHour
         scrollRectToVisible(CGRectMake(0, CGFloat(hour)*cellHeight + 8, frame.width, cellHeight), animated: false)
         
         

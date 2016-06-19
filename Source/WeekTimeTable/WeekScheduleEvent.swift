@@ -8,16 +8,16 @@
 
 import UIKit
 
-public struct WeekScheduleEvent<T> {
+public struct WeekScheduleEvent {
     public var startDate : NSDate
     public var endDate : NSDate
     public var startSeconds : Double
     public var endSeconds : Double
     public var eventColor : UIColor
     public var eventTitle : String
-    public var customValue : T?
+    public var customValue : AnyObject?
     
-    public init(startDate: NSDate, endDate: NSDate, eventColor: UIColor, eventTitle: String, customValue: T?) {
+    public init(startDate: NSDate, endDate: NSDate, eventColor: UIColor, eventTitle: String, customValue: AnyObject?) {
         self.startDate = startDate
         self.endDate = endDate
         self.eventColor = eventColor

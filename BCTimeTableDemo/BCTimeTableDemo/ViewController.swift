@@ -17,10 +17,19 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         let ap = calendarAppearance()
         ap.firstDay = .Sunday
-        weekTableView = WeekTimeTableView(frame: CGRectMake(0, 20, view.frame.width, view.frame.height-20), appearance: ap)
+        weekTableView = WeekTimeTableView(frame: CGRectZero, appearance: ap)
+        view.addSubview(weekTableView!)
+        
+        let constraints1 = NSLayoutConstraint(item: weekTableView!, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: self.view.layoutMarginsGuide, attribute: .Left, multiplier: 1, constant: 0)
+        let constraints2 = NSLayoutConstraint(item: weekTableView!, attribute: .Right, relatedBy: .Equal, toItem: self.view.layoutMarginsGuide, attribute: .Right, multiplier: 1, constant: 0)
+        let constraints3 = NSLayoutConstraint(item: weekTableView!, attribute: .Top, relatedBy: .Equal, toItem: self.topLayoutGuide, attribute: .Bottom, multiplier: 1, constant: 0)
+        let constraints4 = NSLayoutConstraint(item: weekTableView!, attribute: .Bottom, relatedBy: .Equal, toItem: self.bottomLayoutGuide, attribute: .Top, multiplier: 1, constant: 0)
+        
+        NSLayoutConstraint.activateConstraints([constraints3, constraints4])
+        
         weekTableView?.weekTimeAppearanceDelegate = self
         weekTableView?.weekTimeDelegate = self
-        view.addSubview(weekTableView!)
+        
         
         
     }
@@ -52,20 +61,20 @@ extension ViewController : WeekTimeTableDelegate {
         format.timeZone = NSTimeZone.localTimeZone()
         print("start time: " + format.stringFromDate(weekTableView!.startTime))
         print("end time: " + format.stringFromDate(weekTableView!.endTime))
-        let event1 = WeekScheduleEvent<NSObject>(startDate: NSDate(), endDate: NSDate().dateByAddingTimeInterval(3600), eventColor: UIColor.blueColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件", customValue: Reservation())
+        let event1 = WeekScheduleEvent(startDate: NSDate(), endDate: NSDate().dateByAddingTimeInterval(3600), eventColor: UIColor.blueColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件", customValue: Reservation() as? AnyObject)
         
         
-        let event2 = WeekScheduleEvent<NSObject>(startDate: NSDate().dateByAddingTimeInterval(-7200), endDate: NSDate().dateByAddingTimeInterval(-3600), eventColor: UIColor.greenColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件1", customValue: Reservation())
+        let event2 = WeekScheduleEvent(startDate: NSDate().dateByAddingTimeInterval(-7200), endDate: NSDate().dateByAddingTimeInterval(-3600), eventColor: UIColor.greenColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件1", customValue: Reservation() as? AnyObject)
         
-        let event3 = WeekScheduleEvent<NSObject>(startDate: NSDate().dateByAddingTimeInterval(-1800), endDate: NSDate().dateByAddingTimeInterval(1800), eventColor: UIColor.orangeColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件2", customValue: Reservation())
+        let event3 = WeekScheduleEvent(startDate: NSDate().dateByAddingTimeInterval(-1800), endDate: NSDate().dateByAddingTimeInterval(1800), eventColor: UIColor.orangeColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件2", customValue: Reservation() as? AnyObject)
         
-        let event4 = WeekScheduleEvent<NSObject>(startDate: NSDate().dateByAddingTimeInterval(-3600*2.5), endDate: NSDate().dateByAddingTimeInterval(-3600*1.5), eventColor: UIColor.redColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件3", customValue: Reservation())
+        let event4 = WeekScheduleEvent(startDate: NSDate().dateByAddingTimeInterval(-3600*2.5), endDate: NSDate().dateByAddingTimeInterval(-3600*1.5), eventColor: UIColor.redColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件3", customValue: Reservation() as? AnyObject)
         
-        let event5 = WeekScheduleEvent<NSObject>(startDate: format.dateFromString("2016-6-15 08:00")!, endDate: format.dateFromString("2015-6-15 09:00")!, eventColor: UIColor.blueColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件5", customValue: nil)
-        let event6 = WeekScheduleEvent<NSObject>(startDate: format.dateFromString("2016-6-13 21:00")!, endDate: format.dateFromString("2015-6-13 22:00")!, eventColor: UIColor.blueColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件6", customValue: nil)
+        let event5 = WeekScheduleEvent(startDate: format.dateFromString("2016-6-15 08:00")!, endDate: format.dateFromString("2015-6-15 09:00")!, eventColor: UIColor.blueColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件5", customValue: nil)
+        let event6 = WeekScheduleEvent(startDate: format.dateFromString("2016-6-13 21:00")!, endDate: format.dateFromString("2015-6-13 22:00")!, eventColor: UIColor.blueColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件6", customValue: nil)
         
-        let event7 = WeekScheduleEvent<NSObject>(startDate: format.dateFromString("2016-6-15 07:00")!, endDate: format.dateFromString("2015-6-15 09:00")!, eventColor: UIColor.blueColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件7", customValue: nil)
-        let event8 = WeekScheduleEvent<NSObject>(startDate: format.dateFromString("2016-6-13 21:00")!, endDate: format.dateFromString("2015-6-13 23:00")!, eventColor: UIColor.blueColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件8", customValue: nil)
+        let event7 = WeekScheduleEvent(startDate: format.dateFromString("2016-6-15 07:00")!, endDate: format.dateFromString("2015-6-15 09:00")!, eventColor: UIColor.blueColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件7", customValue: nil)
+        let event8 = WeekScheduleEvent(startDate: format.dateFromString("2016-6-13 21:00")!, endDate: format.dateFromString("2015-6-13 23:00")!, eventColor: UIColor.blueColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件8", customValue: nil)
         
         weekTableView?.events = [event1, event2, event3, event4, event5, event6, event7, event8]
     }
@@ -105,7 +114,7 @@ extension ViewController : WeekTimeAppearanceDelegate {
 }
 
 
-class Reservation : NSObject {
+class Reservation  {
     var id = ""
     var courseId = ""
     var courseName = ""
@@ -127,7 +136,7 @@ class Reservation : NSObject {
     var endTime = ""
     var comment = ""
     
-    override init() {}
+    init() {}
     
     
     
