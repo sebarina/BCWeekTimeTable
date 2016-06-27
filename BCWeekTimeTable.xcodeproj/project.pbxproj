@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		401B1C1BA51B8FCA7AB3F31B /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 788DB14E2C44F2395E86BF33 /* Pods.framework */; };
 		D4B289691D0AA75900F4BA46 /* WeekTimeTable.h in Headers */ = {isa = PBXBuildFile; fileRef = D4B289671D0AA75900F4BA46 /* WeekTimeTable.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D4B289781D0AA7A200F4BA46 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B2896B1D0AA7A200F4BA46 /* CalendarView.swift */; };
+		D4B289781D0AA7A200F4BA46 /* BCCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B2896B1D0AA7A200F4BA46 /* BCCalendarView.swift */; };
 		D4B289791D0AA7A200F4BA46 /* CalendarViewAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B2896C1D0AA7A200F4BA46 /* CalendarViewAppearance.swift */; };
 		D4B2897A1D0AA7A200F4BA46 /* TimeTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B2896E1D0AA7A200F4BA46 /* TimeTitleCell.swift */; };
 		D4B2897B1D0AA7A200F4BA46 /* TimeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B2896F1D0AA7A200F4BA46 /* TimeUtil.swift */; };
@@ -30,7 +30,7 @@
 		D4B289591D0AA6D600F4BA46 /* BCWeekTimeTable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BCWeekTimeTable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B289661D0AA75900F4BA46 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Source/Info.plist; sourceTree = SOURCE_ROOT; };
 		D4B289671D0AA75900F4BA46 /* WeekTimeTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeekTimeTable.h; path = Source/WeekTimeTable.h; sourceTree = SOURCE_ROOT; };
-		D4B2896B1D0AA7A200F4BA46 /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		D4B2896B1D0AA7A200F4BA46 /* BCCalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BCCalendarView.swift; sourceTree = "<group>"; };
 		D4B2896C1D0AA7A200F4BA46 /* CalendarViewAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewAppearance.swift; sourceTree = "<group>"; };
 		D4B2896E1D0AA7A200F4BA46 /* TimeTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTitleCell.swift; sourceTree = "<group>"; };
 		D4B2896F1D0AA7A200F4BA46 /* TimeUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUtil.swift; sourceTree = "<group>"; };
@@ -105,7 +105,7 @@
 		D4B2896A1D0AA7A200F4BA46 /* CalendarView */ = {
 			isa = PBXGroup;
 			children = (
-				D4B2896B1D0AA7A200F4BA46 /* CalendarView.swift */,
+				D4B2896B1D0AA7A200F4BA46 /* BCCalendarView.swift */,
 				D4B2896C1D0AA7A200F4BA46 /* CalendarViewAppearance.swift */,
 			);
 			name = CalendarView;
@@ -248,7 +248,7 @@
 				D4B289811D0AA7A200F4BA46 /* WeekTimeFooterView.swift in Sources */,
 				D4B289791D0AA7A200F4BA46 /* CalendarViewAppearance.swift in Sources */,
 				D4B289831D0AA7A200F4BA46 /* WeekTimeTableView.swift in Sources */,
-				D4B289781D0AA7A200F4BA46 /* CalendarView.swift in Sources */,
+				D4B289781D0AA7A200F4BA46 /* BCCalendarView.swift in Sources */,
 				D4B289821D0AA7A200F4BA46 /* WeekTimeTableDelegate.swift in Sources */,
 				D4B2897E1D0AA7A200F4BA46 /* WeekTimeAppearanceDelegate.swift in Sources */,
 				D4B2897D1D0AA7A200F4BA46 /* WeekTimeAppearance.swift in Sources */,

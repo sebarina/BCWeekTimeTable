@@ -17,16 +17,16 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         let ap = calendarAppearance()
         ap.firstDay = .Sunday
-        weekTableView = WeekTimeTableView(frame: CGRectZero, appearance: ap)
+        weekTableView = WeekTimeTableView(frame: CGRectMake(0, 64, view.frame.width, view.frame.height - 64), appearance: ap)
         view.addSubview(weekTableView!)
         
-        let constraints1 = NSLayoutConstraint(item: weekTableView!, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: self.view.layoutMarginsGuide, attribute: .Left, multiplier: 1, constant: 0)
-        let constraints2 = NSLayoutConstraint(item: weekTableView!, attribute: .Right, relatedBy: .Equal, toItem: self.view.layoutMarginsGuide, attribute: .Right, multiplier: 1, constant: 0)
-        let constraints3 = NSLayoutConstraint(item: weekTableView!, attribute: .Top, relatedBy: .Equal, toItem: self.topLayoutGuide, attribute: .Bottom, multiplier: 1, constant: 0)
-        let constraints4 = NSLayoutConstraint(item: weekTableView!, attribute: .Bottom, relatedBy: .Equal, toItem: self.bottomLayoutGuide, attribute: .Top, multiplier: 1, constant: 0)
-        
-        NSLayoutConstraint.activateConstraints([constraints3, constraints4])
-        
+//        let constraints1 = NSLayoutConstraint(item: weekTableView!, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: self.view.layoutMarginsGuide, attribute: .Left, multiplier: 1, constant: 0)
+//        let constraints2 = NSLayoutConstraint(item: weekTableView!, attribute: .Right, relatedBy: .Equal, toItem: self.view.layoutMarginsGuide, attribute: .Right, multiplier: 1, constant: 0)
+//        let constraints3 = NSLayoutConstraint(item: weekTableView!, attribute: .Top, relatedBy: .Equal, toItem: self.topLayoutGuide, attribute: .Bottom, multiplier: 1, constant: 0)
+//        let constraints4 = NSLayoutConstraint(item: weekTableView!, attribute: .Bottom, relatedBy: .Equal, toItem: self.bottomLayoutGuide, attribute: .Top, multiplier: 1, constant: 0)
+//        
+//        NSLayoutConstraint.activateConstraints([constraints1, constraints2, constraints3, constraints4])
+//        
         weekTableView?.weekTimeAppearanceDelegate = self
         weekTableView?.weekTimeDelegate = self
         

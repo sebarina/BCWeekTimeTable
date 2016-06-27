@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import BCWeekTimeTable
+import CVCalendar
 
 class ViewController2: UIViewController {
 
+    @IBOutlet weak var monthLabel: UILabel!
+    @IBOutlet weak var calendarView: BCCalendarView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,7 +25,20 @@ class ViewController2: UIViewController {
         
     }
     
+//    override func viewDidLayoutSubviews() {
+//        super.viewDidLayoutSubviews()
+//        calendarView.commonInit()
+//    }
     
+    
+    @IBAction func changeMode(sender: AnyObject) {
+        if calendarView.currentMode == .WeekView {
+            calendarView.changeMode(.MonthView)
+        } else {
+            calendarView.changeMode(.WeekView)
+        }
+        
+    }
     
 
     /*

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1Cc-p8-wY4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="1Cc-p8-wY4">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -19,7 +20,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D4E-bh-lDm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-489" y="76"/>
+            <point key="canvasLocation" x="-260.80000000000001" y="71.946666666666673"/>
         </scene>
         <!--Test-->
         <scene sceneID="7xu-wi-u1N">
@@ -30,7 +31,7 @@
                         <viewControllerLayoutGuide type="bottom" id="E0h-4L-oHt"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gsI-9d-H3Q">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -44,7 +45,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lsp-od-fjf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1063" y="151"/>
+            <point key="canvasLocation" x="566.93333333333328" y="142.94666666666666"/>
         </scene>
         <!--Test2-->
         <scene sceneID="MxB-oT-d8g">
@@ -55,15 +56,55 @@
                         <viewControllerLayoutGuide type="bottom" id="JIe-sO-PbV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="6Gu-cy-LAX">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jj3-bl-L2x" userLabel="monthLabel">
+                                <rect key="frame" x="1" y="64" width="60" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="BAk-bL-6XO"/>
+                                    <constraint firstAttribute="width" constant="60" id="rDm-1Z-Ack"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="weq-bw-pTH">
+                                <rect key="frame" x="1" y="88" width="60" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="P2X-2h-lDO"/>
+                                    <constraint firstAttribute="height" constant="36" id="Uqv-Pn-o89"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="changeMode:" destination="jzk-fx-4vV" eventType="touchUpInside" id="mAp-UY-5zF"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="usC-X2-QRx" customClass="BCCalendarView" customModule="BCWeekTimeTable">
+                                <rect key="frame" x="61" y="64" width="258" height="68"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="weq-bw-pTH" firstAttribute="leading" secondItem="6Gu-cy-LAX" secondAttribute="leadingMargin" constant="-15" id="7BE-SX-k0k"/>
+                            <constraint firstItem="Jj3-bl-L2x" firstAttribute="top" secondItem="ZJ6-4m-vVc" secondAttribute="bottom" id="W2g-fk-5Vi"/>
+                            <constraint firstItem="Jj3-bl-L2x" firstAttribute="leading" secondItem="6Gu-cy-LAX" secondAttribute="leadingMargin" constant="-15" id="acg-Ai-YWj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="usC-X2-QRx" secondAttribute="trailing" constant="-15" id="boV-I1-oag"/>
+                            <constraint firstItem="usC-X2-QRx" firstAttribute="top" secondItem="ZJ6-4m-vVc" secondAttribute="bottom" id="dz6-0z-Dt0"/>
+                            <constraint firstItem="usC-X2-QRx" firstAttribute="leading" secondItem="Jj3-bl-L2x" secondAttribute="trailing" id="hEf-bk-Xmv"/>
+                            <constraint firstItem="weq-bw-pTH" firstAttribute="top" secondItem="Jj3-bl-L2x" secondAttribute="bottom" id="mPp-XR-1HZ"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Test2" id="Ecp-PM-FuU"/>
+                    <connections>
+                        <outlet property="calendarView" destination="usC-X2-QRx" id="QlQ-2C-EsN"/>
+                        <outlet property="monthLabel" destination="Jj3-bl-L2x" id="6DY-Vm-WXN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="swE-hT-0oK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1771" y="142"/>
+            <point key="canvasLocation" x="944.5333333333333" y="134.42666666666668"/>
         </scene>
         <!--Title-->
         <scene sceneID="tne-QT-ifu">
@@ -74,7 +115,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -89,6 +130,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="149.33333333333334" y="147.20666666666668"/>
         </scene>
     </scenes>
 </document>

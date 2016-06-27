@@ -50,9 +50,6 @@ public class WeekTimeCollectionView: UICollectionView {
         self.timeWidth = timeWidth
         self.firstWeekDay = firstWeekDay
         startDate = TimeUtil.getWeekStartDate(NSDate(), firstWeekDay: firstWeekDay)
-        cellWidth = CGFloat(Int((frame.width - timeWidth)/7))
-        cellHeight = cellWidth*4/3
-        self.timeWidth = frame.width - cellWidth*7
         backgroundColor = UIColor.whiteColor()
         dataSource = self
         delegate = self
@@ -73,10 +70,7 @@ public class WeekTimeCollectionView: UICollectionView {
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-
-//    public var startTime : NSDate 
-    
+    }    
 
     public var events : [[WeekScheduleEvent]]? {
         didSet {
@@ -118,7 +112,11 @@ public class WeekTimeCollectionView: UICollectionView {
                         }
                     }
                     groups.append(group)
-                    
+                    if cellWidth == 0 {
+                        cellWidth = CGFloat(Int((frame.width - timeWidth)/7))
+                        cellHeight = cellWidth*4/3
+                        timeWidth = frame.width - cellWidth*7
+                    }
                     for group in groups {
                         let eventWidth : CGFloat = (cellWidth-2)/CGFloat(group.count)
                         for index in 0 ..< group.count {
@@ -187,6 +185,11 @@ extension WeekTimeCollectionView: UICollectionViewDataSource, UICollectionViewDe
     }
     
     public func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        if cellWidth == 0 {
+            cellWidth = CGFloat(Int((frame.width - timeWidth)/7))
+            cellHeight = cellWidth*4/3
+            timeWidth = frame.width - cellWidth*7
+        }
         if indexPath.row % 8 == 0 {
             return CGSize(width: timeWidth, height: cellHeight)
         } else {

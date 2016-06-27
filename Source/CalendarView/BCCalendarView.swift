@@ -11,11 +11,13 @@ import CVCalendar
 
 public class BCCalendarView: UIView {
     public var appearance = BCCalendarViewAppearance()
-    public var menuView : CVCalendarMenuView?
-    public var calendarView : CVCalendarView?
-    private let menuHeight : CGFloat = 24
-    private let calendarRowHeight : CGFloat = 36
-    public static var viewHeight : CGFloat = 65
+    
+    public var menuView: CVCalendarMenuView?
+
+    public var calendarView: CVCalendarView?
+    var calendarHeightContraint : NSLayoutConstraint?
+    
+    public static var viewHeight : CGFloat = 68
 
     public weak var calendarDelegate : BCCalendarViewDelegate?
     
@@ -31,14 +33,8 @@ public class BCCalendarView: UIView {
     
     public init(frame: CGRect, appearance: BCCalendarViewAppearance = BCCalendarViewAppearance()) {
         super.init(frame: frame)
+        setup()
         self.appearance = appearance
-        menuView = CVCalendarMenuView(frame: CGRectMake(0, 0, frame.width, menuHeight))
-        addSubview(menuView!)
-        
-    
-        calendarView = CVCalendarView(frame: CGRectMake(0, menuHeight, frame.width, calendarRowHeight))
-        addSubview(calendarView!)
-        
         menuView?.menuViewDelegate = self
         calendarView?.calendarDelegate = self
         calendarView?.calendarAppearanceDelegate = self
@@ -47,8 +43,89 @@ public class BCCalendarView: UIView {
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        setup()
+        menuView?.menuViewDelegate = self
+        calendarView?.calendarDelegate = self
+        calendarView?.calendarAppearanceDelegate = self
     }
-
+    
+    func setup() {
+        menuView = CVCalendarMenuView()
+        addSubview(menuView!)
+        menuView!.translatesAutoresizingMaskIntoConstraints = false
+        
+        let ml = NSLayoutConstraint(item: menuView!, 
+                                   attribute: .Leading, 
+                                   relatedBy: .Equal, 
+                                   toItem: self, 
+                                   attribute: .Leading, 
+                                   multiplier: 1.0, 
+                                   constant: 0)
+        let mr = NSLayoutConstraint(item: menuView!, 
+                                   attribute: .Trailing, 
+                                   relatedBy: .Equal, 
+                                   toItem: self, 
+                                   attribute: .Trailing, 
+                                   multiplier: 1.0, 
+                                   constant: 0)
+        let mt = NSLayoutConstraint(item: menuView!, 
+                                   attribute: .Top, 
+                                   relatedBy: .Equal, 
+                                   toItem: self, 
+                                   attribute: .Top, 
+                                   multiplier: 1.0, 
+                                   constant: 8)
+        let mh = NSLayoutConstraint(item: menuView!, 
+                                   attribute: .Height, 
+                                   relatedBy: .Equal, 
+                                   toItem: nil, 
+                                   attribute: .NotAnAttribute, 
+                                   multiplier: 1.0, 
+                                   constant: 24)
+        NSLayoutConstraint.activateConstraints([ml,mr,mt,mh])
+        
+        calendarView = CVCalendarView()
+        addSubview(calendarView!)
+        calendarView!.translatesAutoresizingMaskIntoConstraints = false
+        let cl = NSLayoutConstraint(item: calendarView!, 
+                                    attribute: .Leading, 
+                                    relatedBy: .Equal, 
+                                    toItem: self, 
+                                    attribute: .Leading, 
+                                    multiplier: 1.0, 
+                                    constant: 0)
+        let cr = NSLayoutConstraint(item: calendarView!, 
+                                    attribute: .Trailing, 
+                                    relatedBy: .Equal, 
+                                    toItem: self, 
+                                    attribute: .Trailing, 
+                                    multiplier: 1.0, 
+                                    constant: 0)
+        let ct = NSLayoutConstraint(item: calendarView!, 
+                                    attribute: .Top, 
+                                    relatedBy: .Equal, 
+                                    toItem: menuView!, 
+                                    attribute: .Bottom, 
+                                    multiplier: 1.0, 
+                                    constant: 0)
+        calendarHeightContraint = NSLayoutConstraint(item: calendarView!, 
+                                    attribute: .Height, 
+                                    relatedBy: .Equal, 
+                                    toItem: nil, 
+                                    attribute: NSLayoutAttribute.NotAnAttribute, 
+                                    multiplier: 1.0, 
+                                    constant: 36)
+        
+        NSLayoutConstraint.activateConstraints([cl, cr, ct, calendarHeightContraint!])
+        
+        clipsToBounds = true
+        
+    }
+    
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        commonInit()
+    }
     
     public func commonInit() {
         calendarView?.commitCalendarViewUpdate()
@@ -60,10 +137,13 @@ public class BCCalendarView: UIView {
         return calendarView?.calendarMode ?? .WeekView
     }
     
+    public var currentHeight : CGFloat {
+        return (calendarView?.contentController.bounds.height ?? 0) + 32
+    }
+    
     public func changeMode(mode: CalendarMode) {
         calendarView?.changeMode(mode)
-        calendarView?.frame.size.height = calendarView!.contentController.bounds.height
-        frame.size.height = calendarView!.contentController.bounds.height + menuHeight
+        calendarHeightContraint?.constant = calendarView!.contentController.bounds.height
     }
 
 }

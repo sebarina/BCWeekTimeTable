@@ -75,32 +75,55 @@ public class WeekTimeTableView: UIView {
         super.init(frame: frame)
         backgroundColor = UIColor.whiteColor()
         self.calendarAppearance = appearance
-        calendarView = BCCalendarView(frame: CGRectMake(40, 8, frame.width-40, BCCalendarView.viewHeight), appearance: appearance)
+        calendarView = BCCalendarView(frame: CGRectZero, appearance: appearance)
         calendarView?.calendarDelegate = self
+        calendarView?.translatesAutoresizingMaskIntoConstraints = false
+        let cl = NSLayoutConstraint(item: calendarView!, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 40.0)
+        let ct = NSLayoutConstraint(item: calendarView!, attribute: .Top, relatedBy: .Equal, toItem: self, attribute: .Top, multiplier: 1.0, constant: 0)
+        let cw = NSLayoutConstraint(item: calendarView!, attribute: .Right, relatedBy: .Equal, toItem: self, attribute: .Right, multiplier: 1.0, constant: 0)
+        let ch = NSLayoutConstraint(item: calendarView!, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 68.0)
         addSubview(calendarView!)
+        NSLayoutConstraint.activateConstraints([ct, cw, cl, ch])
+        
         
         let compoent : BCDateComponent = TimeUtil.getDateComponent(NSDate())
         
-        yearLabel = UILabel(frame: CGRectMake(0, 8, 40, 24))
+        yearLabel = UILabel(frame: CGRect.zero)
         yearLabel?.textAlignment = .Center
         yearLabel?.textColor = UIColor.darkGrayColor()
         yearLabel?.font = UIFont.systemFontOfSize(12)
         yearLabel?.text = String(compoent.year)
+        yearLabel?.translatesAutoresizingMaskIntoConstraints = false
         addSubview(yearLabel!)
         
-        monthLabel = UILabel(frame: CGRectMake(0, 32, 40, 36))
+        let yl = NSLayoutConstraint(item: yearLabel!, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 0)
+        let yt = NSLayoutConstraint(item: yearLabel!, attribute: .Top, relatedBy: .Equal, toItem: self, attribute: .Top, multiplier: 1.0, constant: 8)
+        let yw = NSLayoutConstraint(item: yearLabel!, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 40)
+        let yh = NSLayoutConstraint(item: yearLabel!, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 24)
+        NSLayoutConstraint.activateConstraints([yl, yt, yw, yh])
+        
+        monthLabel = UILabel(frame: CGRectZero)
         monthLabel?.textAlignment = .Center
         monthLabel?.textColor = appearance.weekDaySelectedBgColor
         monthLabel?.font = UIFont.systemFontOfSize(16)
         monthLabel?.text = String(compoent.month) + "月"
+        monthLabel?.translatesAutoresizingMaskIntoConstraints = false
+        let ml = NSLayoutConstraint(item: monthLabel!, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 0)
+        let mt = NSLayoutConstraint(item: monthLabel!, attribute: .Top, relatedBy: .Equal, toItem: yearLabel!, attribute: .Bottom, multiplier: 1.0, constant: 0)
+        let mw = NSLayoutConstraint(item: monthLabel!, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 40)
+        let mh = NSLayoutConstraint(item: monthLabel!, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 36)
         addSubview(monthLabel!)
+        NSLayoutConstraint.activateConstraints([ml, mt, mw, mh])
         
-        collectionView = WeekTimeCollectionView(frame: CGRectMake(0, BCCalendarView.viewHeight + 8, frame.width, frame.height - BCCalendarView.viewHeight), timeWidth: 40, firstWeekDay: appearance.firstDay.rawValue)
+        collectionView = WeekTimeCollectionView(frame: CGRect.zero, timeWidth: 40, firstWeekDay: appearance.firstDay.rawValue)
+        collectionView?.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(collectionView!)        
+        let col = NSLayoutConstraint(item: collectionView!, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 0)
+        let cot = NSLayoutConstraint(item: collectionView!, attribute: .Top, relatedBy: .Equal, toItem: calendarView!, attribute: .Bottom, multiplier: 1.0, constant: 0)
+        let cor = NSLayoutConstraint(item: collectionView!, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: 0)
+        let cob = NSLayoutConstraint(item: collectionView!, attribute: .Bottom, relatedBy: .Equal, toItem: self, attribute: .Bottom, multiplier: 1.0, constant: 0)
+        NSLayoutConstraint.activateConstraints([col, cot, cor, cob])
         
-        
-        
-        addSubview(collectionView!)
-    
     }
     
     
@@ -110,14 +133,12 @@ public class WeekTimeTableView: UIView {
     
     override public func layoutSubviews() {
         super.layoutSubviews()
-        calendarView?.commonInit()
         collectionView?.scrollToCurrentTime()
         weekTimeDelegate?.weekTimeWeekTimeUpdated?(startTime)
     }
     
     public func goToDate(date: NSDate) {
         calendarView?.calendarView?.toggleViewWithDate(date)
-//        collectionView?.startDate = TimeUtil.getWeekStartDate(date, firstWeekDay: calendarAppearance.firstDay.rawValue)
         
     }
 }
