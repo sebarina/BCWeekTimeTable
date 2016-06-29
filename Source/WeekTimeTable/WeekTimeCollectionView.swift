@@ -114,6 +114,9 @@ public class WeekTimeCollectionView: UICollectionView {
                     groups.append(group)
                     if cellWidth == 0 {
                         cellWidth = CGFloat(Int((frame.width - timeWidth)/7))
+                        if cellWidth < 0 {
+                            cellWidth = 0
+                        }
                         cellHeight = cellWidth*4/3
                         timeWidth = frame.width - cellWidth*7
                     }
@@ -186,7 +189,10 @@ extension WeekTimeCollectionView: UICollectionViewDataSource, UICollectionViewDe
     
     public func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         if cellWidth == 0 {
-            cellWidth = CGFloat(Int((frame.width - timeWidth)/7))
+            cellWidth = CGFloat(Int((collectionView.frame.width - timeWidth)/7))
+            if cellWidth < 0 {
+                cellWidth = 0
+            }
             cellHeight = cellWidth*4/3
             timeWidth = frame.width - cellWidth*7
         }

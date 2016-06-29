@@ -15,7 +15,7 @@ public class BCCalendarView: UIView {
     public var menuView: CVCalendarMenuView?
 
     public var calendarView: CVCalendarView?
-    var calendarHeightContraint : NSLayoutConstraint?
+    public var calendarHeightContraint : NSLayoutConstraint?
     
     public static var viewHeight : CGFloat = 68
 
