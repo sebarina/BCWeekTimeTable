@@ -116,9 +116,11 @@ public class WeekTimeCollectionView: UICollectionView {
                         cellWidth = CGFloat(Int((frame.width - timeWidth)/7))
                         if cellWidth < 0 {
                             cellWidth = 0
+                        } else {
+                            cellHeight = cellWidth*4/3
+                            timeWidth = frame.width - cellWidth*7
                         }
-                        cellHeight = cellWidth*4/3
-                        timeWidth = frame.width - cellWidth*7
+                        
                     }
                     for group in groups {
                         let eventWidth : CGFloat = (cellWidth-2)/CGFloat(group.count)
@@ -188,14 +190,6 @@ extension WeekTimeCollectionView: UICollectionViewDataSource, UICollectionViewDe
     }
     
     public func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        if cellWidth == 0 {
-            cellWidth = CGFloat(Int((collectionView.frame.width - timeWidth)/7))
-            if cellWidth < 0 {
-                cellWidth = 0
-            }
-            cellHeight = cellWidth*4/3
-            timeWidth = frame.width - cellWidth*7
-        }
         if indexPath.row % 8 == 0 {
             return CGSize(width: timeWidth, height: cellHeight)
         } else {

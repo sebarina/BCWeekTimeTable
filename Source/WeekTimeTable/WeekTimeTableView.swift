@@ -39,32 +39,8 @@ public class WeekTimeTableView: UIView {
     
     public var events : [WeekScheduleEvent]? {
         didSet {
-            if events != nil {
-                var tempEvents : [[WeekScheduleEvent]] = [
-                    [],
-                    [],
-                    [],
-                    [],
-                    [],
-                    [],
-                    []
-                ]
-                for event in events! {
-                    let weekDay = (TimeUtil.getDateComponent(event.startDate).weekDay + 7 - calendarAppearance.firstDay.rawValue) % 7
-                    tempEvents[weekDay].append(event)
-                    
-                }
-                
-                for i in 0 ..< tempEvents.count {
-                    let tempEvent = tempEvents[i]
-                    tempEvents[i] = tempEvent.sort({ (event1, event2) -> Bool in
-                        if event1.startSeconds < event2.startSeconds {
-                            return true
-                        }
-                        return false
-                    })
-                }
-                collectionView?.events = tempEvents
+            if events != nil && frame.width > 0 {
+                refreshUI()
             }
             
             
@@ -135,11 +111,42 @@ public class WeekTimeTableView: UIView {
         super.layoutSubviews()
         collectionView?.scrollToCurrentTime()
         weekTimeDelegate?.weekTimeWeekTimeUpdated?(startTime)
+        if events != nil && frame.width > 0 {
+            refreshUI()
+        }
     }
     
     public func goToDate(date: NSDate) {
         calendarView?.calendarView?.toggleViewWithDate(date)
         
+    }
+    
+    func refreshUI() {
+        var tempEvents : [[WeekScheduleEvent]] = [
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            []
+        ]
+        for event in events! {
+            let weekDay = (TimeUtil.getDateComponent(event.startDate).weekDay + 7 - calendarAppearance.firstDay.rawValue) % 7
+            tempEvents[weekDay].append(event)
+            
+        }
+        
+        for i in 0 ..< tempEvents.count {
+            let tempEvent = tempEvents[i]
+            tempEvents[i] = tempEvent.sort({ (event1, event2) -> Bool in
+                if event1.startSeconds < event2.startSeconds {
+                    return true
+                }
+                return false
+            })
+        }
+        collectionView?.events = tempEvents
     }
 }
 

@@ -30,8 +30,25 @@ class ViewController: UIViewController {
 //        
         weekTableView?.weekTimeAppearanceDelegate = self
         weekTableView?.weekTimeDelegate = self
+        let format = NSDateFormatter()
+        format.dateFormat = "yyyy-MM-dd HH:mm"
+        format.timeZone = NSTimeZone.localTimeZone()
+        let event1 = WeekScheduleEvent(startDate: NSDate(), endDate: NSDate().dateByAddingTimeInterval(3600), eventColor: UIColor.blueColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件", customValue: Reservation())
         
         
+        let event2 = WeekScheduleEvent(startDate: NSDate().dateByAddingTimeInterval(-7200), endDate: NSDate().dateByAddingTimeInterval(-3600), eventColor: UIColor.greenColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件1", customValue: Reservation())
+        
+        let event3 = WeekScheduleEvent(startDate: NSDate().dateByAddingTimeInterval(-1800), endDate: NSDate().dateByAddingTimeInterval(1800), eventColor: UIColor.orangeColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件2", customValue: Reservation())
+        
+        let event4 = WeekScheduleEvent(startDate: NSDate().dateByAddingTimeInterval(-3600*2.5), endDate: NSDate().dateByAddingTimeInterval(-3600*1.5), eventColor: UIColor.redColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件3", customValue: Reservation())
+        
+        let event5 = WeekScheduleEvent(startDate: format.dateFromString("2016-6-15 08:00")!, endDate: format.dateFromString("2015-6-15 09:00")!, eventColor: UIColor.blueColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件5", customValue: nil)
+        let event6 = WeekScheduleEvent(startDate: format.dateFromString("2016-6-13 21:00")!, endDate: format.dateFromString("2015-6-13 22:00")!, eventColor: UIColor.blueColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件6", customValue: nil)
+        
+        let event7 = WeekScheduleEvent(startDate: format.dateFromString("2016-6-15 07:00")!, endDate: format.dateFromString("2015-6-15 09:00")!, eventColor: UIColor.blueColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件7", customValue: nil)
+        let event8 = WeekScheduleEvent(startDate: format.dateFromString("2016-6-13 21:00")!, endDate: format.dateFromString("2015-6-13 23:00")!, eventColor: UIColor.blueColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件8", customValue: nil)
+        
+        weekTableView?.events = [event1, event2, event3, event4, event5, event6, event7, event8]
         
     }
 
@@ -62,22 +79,7 @@ extension ViewController : WeekTimeTableDelegate {
         format.timeZone = NSTimeZone.localTimeZone()
         print("start time: " + format.stringFromDate(weekTableView!.startTime))
         print("end time: " + format.stringFromDate(weekTableView!.endTime))
-        let event1 = WeekScheduleEvent(startDate: NSDate(), endDate: NSDate().dateByAddingTimeInterval(3600), eventColor: UIColor.blueColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件", customValue: Reservation())
         
-        
-        let event2 = WeekScheduleEvent(startDate: NSDate().dateByAddingTimeInterval(-7200), endDate: NSDate().dateByAddingTimeInterval(-3600), eventColor: UIColor.greenColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件1", customValue: Reservation())
-        
-        let event3 = WeekScheduleEvent(startDate: NSDate().dateByAddingTimeInterval(-1800), endDate: NSDate().dateByAddingTimeInterval(1800), eventColor: UIColor.orangeColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件2", customValue: Reservation())
-        
-        let event4 = WeekScheduleEvent(startDate: NSDate().dateByAddingTimeInterval(-3600*2.5), endDate: NSDate().dateByAddingTimeInterval(-3600*1.5), eventColor: UIColor.redColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件3", customValue: Reservation())
-        
-        let event5 = WeekScheduleEvent(startDate: format.dateFromString("2016-6-15 08:00")!, endDate: format.dateFromString("2015-6-15 09:00")!, eventColor: UIColor.blueColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件5", customValue: nil)
-        let event6 = WeekScheduleEvent(startDate: format.dateFromString("2016-6-13 21:00")!, endDate: format.dateFromString("2015-6-13 22:00")!, eventColor: UIColor.blueColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件6", customValue: nil)
-        
-        let event7 = WeekScheduleEvent(startDate: format.dateFromString("2016-6-15 07:00")!, endDate: format.dateFromString("2015-6-15 09:00")!, eventColor: UIColor.blueColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件7", customValue: nil)
-        let event8 = WeekScheduleEvent(startDate: format.dateFromString("2016-6-13 21:00")!, endDate: format.dateFromString("2015-6-13 23:00")!, eventColor: UIColor.blueColor().colorWithAlphaComponent(0.6), eventTitle: "测试事件8", customValue: nil)
-        
-        weekTableView?.events = [event1, event2, event3, event4, event5, event6, event7, event8]
     }
 }
 
