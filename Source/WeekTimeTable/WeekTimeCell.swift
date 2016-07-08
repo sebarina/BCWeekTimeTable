@@ -8,10 +8,16 @@
 
 import UIKit
 
+
 public class WeekTimeCell: UICollectionViewCell {
     public var lineColor : UIColor = UIColor(red: 187.0/255.0, green: 187.0/255.0, blue: 187.0/255.0, alpha: 1)
     public var dashLineColor : UIColor = UIColor(red: 154.0/255.0, green: 154.0/255.0, blue: 154.0/255.0, alpha: 1)
 
+    
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        setNeedsDisplay()
+    }
     
     override public func drawRect(rect: CGRect) {
         super.drawRect(rect)
