@@ -110,7 +110,7 @@ public class WeekTimeTableView: UIView {
     override public func layoutSubviews() {
         super.layoutSubviews()
         collectionView?.scrollToCurrentTime()
-        weekTimeDelegate?.weekTimeWeekTimeUpdated?(startTime)
+//        weekTimeDelegate?.weekTimeWeekTimeUpdated?(startTime)
         if events != nil && frame.width > 0 {
             refreshUI()
         }
