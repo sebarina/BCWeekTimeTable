@@ -149,6 +149,8 @@ public class WeekTimeCollectionView: UICollectionView {
         button.setTitleColor(UIColor.blackColor(), forState: .Normal)
         button.customEvent = event.customValue
         button.addTarget(self, action: #selector(WeekTimeCollectionView.eventClicked(_:)), forControlEvents: .TouchUpInside)
+        button.accessibilityIdentifier = "weektime_event"
+        button.isAccessibilityElement = true
         eventButtons.append(button)
         addSubview(button)
     }
@@ -165,6 +167,8 @@ public class WeekTimeCollectionView: UICollectionView {
         }
         
         _addButton?.addTarget(self, action: #selector(WeekTimeCollectionView.addButtonAction), forControlEvents: .TouchUpInside)
+        _addButton?.accessibilityIdentifier = "weektime_addbutton"
+        _addButton?.isAccessibilityElement = true
     }
     
     public func scrollToCurrentTime() {

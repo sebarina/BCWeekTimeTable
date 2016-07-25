@@ -10,6 +10,28 @@ import UIKit
 import BCWeekTimeTable
 
 class ViewController: UIViewController {
+    
+    
+    @IBAction func popover(sender: UIButton) {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("popover")
+        vc.modalPresentationStyle = .Popover
+        vc.preferredContentSize = CGSizeMake(200, 180)
+        
+        if let popVC = vc.popoverPresentationController {
+            popVC.sourceView = sender
+            popVC.sourceRect.origin.y += sender.frame.height
+            popVC.sourceRect.origin.x += sender.frame.width/2
+            popVC.delegate = self
+        
+            
+        }
+        
+        presentViewController(vc, animated: true, completion: nil)
+        
+        
+    }
+    @IBOutlet weak var actionButton: UIButton!
+    
     var weekTableView : WeekTimeTableView?
     private let queue = dispatch_queue_create("com.aschuch.cache.diskQueue", DISPATCH_QUEUE_CONCURRENT)
     override func viewDidLoad() {
@@ -18,7 +40,7 @@ class ViewController: UIViewController {
         let ap = calendarAppearance()
         ap.firstDay = .Sunday
         weekTableView = WeekTimeTableView(frame: CGRectZero, appearance: ap)
-        view.addSubview(weekTableView!)
+        view.insertSubview(weekTableView!, atIndex: 0)
         weekTableView?.translatesAutoresizingMaskIntoConstraints = false
         
         let constraints1 = NSLayoutConstraint(item: weekTableView!, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: .Leading, multiplier: 1, constant: 0)
@@ -113,6 +135,12 @@ extension ViewController : WeekTimeAppearanceDelegate {
     
     func weekTimeTableEndHour() -> Int {
         return 22
+    }
+}
+
+extension ViewController : UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .None
     }
 }
 
